@@ -125,20 +125,27 @@ $(document).ready(function () {
 </head>
 
 <body>
-
 <div id="past">
 
+        {% assign current_year = 2021 %}
+        {% assign start_year = 1983 %}
         {% assign season_counter = 0 %}
+        {% assign seasons = "Winter, Spring, Summer, Autumn" | split: ", " %}
 
-	{% for season in collections.seasonsList %}
+        {% for y in (start_year..current_year) %}
+        {% for s in seasons %}
 
-          {% if season.exists %}
-                  <a href="{{season.url}}">{{ cs }}<p class="active folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ season.combo  }}<span class="synops">{{ season.title }}</span></p></a> 
+          {% assign cs = s | append: y %}
+          {% assign seasonses =  collections.[ cs ] %}
+
+          {% if season.tags contains cs %}
+                  <a href="{{season.url}}">{{ cs }}<p class="active folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{  y }}<span class="synops">{{ season.title }}</span></p></a> 
           {% else %}
-                <a href="#"><p class="folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ season.combo  }}<span class="synops"></span></p></a> 
+                <a href="#"><p class="folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{ y }}<span class="synops"></span></p></a> 
 
         {% endif %}
 
+        {% endfor %}
         {% endfor %}
 
   </div>
