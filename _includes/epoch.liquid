@@ -27,6 +27,15 @@
     font-size: 4.96vw;
     text-transform: uppercase;
     font-family: Andale Mono; 
+font-family:
+    SFMono-Regular,
+    Andale Mono,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
     padding: 1.5vh 0 1.5vh 1.1vw;
   }
   #past, .todo,  .future {
@@ -129,14 +138,12 @@ $(document).ready(function () {
           {% assign cs = s | append: y %}
           {% assign seasonses =  collections.[ cs ] %}
 
-          {% for season in seasonses %}
           {% if season.tags contains cs %}
                   <a href="{{season.url}}">{{ cs }}<p class="active folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{  y }}<span class="synops">{{ season.title }}</span></p></a> 
           {% else %}
                 <a href="#"><p class="folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{ y }}<span class="synops"></span></p></a> 
 
         {% endif %}
-        {% endfor %} 
 
         {% endfor %}
         {% endfor %}
