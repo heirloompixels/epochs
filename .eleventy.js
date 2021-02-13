@@ -5,6 +5,7 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const slugify = require("slugify");
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss);
@@ -36,6 +37,56 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("min", (...numbers) => {
     return Math.min.apply(null, numbers);
   });
+
+
+eleventyConfig.addCollection("pastSeasons", function (collection) {
+    let pastSeasons = new Set();
+    let seasons = new Set('Winter', 'Spring', 'Summer', 'Fall');
+    let i = 0; 
+    for (i = 1983; i < 2021; i++) {
+	pastSeasons.add("Winter " + i);
+	pastSeasons.add("Spring " + i);
+	pastSeasons.add("Summer " + i);
+	pastSeasons.add("Autumn " + i);
+    }
+ 
+	return [...pastSeasons];
+  });
+
+
+//creates an array with all the seasons of my life, checks if these exists, sets them up.
+eleventyConfig.addCollection("seasonsList", function (collection) {
+    let seasonsList = [];
+	let i = 0;
+    let extentSeasons = collection.getFilteredByTags("seasons");
+    const seasons = ['Winter', 'Spring', 'Summer', 'Autumn']; 
+
+for (i = 1983; i < 2021; i++) {
+		seasons.forEach(function(season) {
+
+			let seasonName = season + " " + i;
+			let seasonExists = false; 
+
+ 			if (extentSeasons.find(obj => obj.data.season == seasonName)) {
+				seasonExists = true; 
+			}
+
+				seasonsList.push({
+					season: season,
+	 				exists: seasonExists,	
+					year: i,
+					combo: seasonName
+				});
+    });
+}
+    return seasonsList;
+  });
+
+
+
+
+
+
 
   eleventyConfig.addCollection("tagList", function(collection) {
     let tagSet = new Set();
