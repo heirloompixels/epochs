@@ -1,0 +1,27 @@
+---
+layout: layouts/base.liquid
+---
+
+<div id="topnav">
+<p><a href="/"><<< FULL MENU</p></a>
+</div>
+
+
+<div id="current"> 
+
+          <a href="/seasons/2021/winter/">
+          <p  class="current">>&nbsp;<span class="numbering"><span>#</span>152</span><span class="season"> Winter 2021</span> <span class="synops">Winter Solstice <br/>Mon. 12&middot;21&middot;21 3:02 AM MST</span></p>
+  </div>
+          </a>
+  <br/>
+
+
+<div id="content">
+	<h1>{{ title }}</h1>
+	{{ content | safe }}
+</div>
+
+
+
+{% include "./_menu.njk" %}
+

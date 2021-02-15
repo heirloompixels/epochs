@@ -124,9 +124,9 @@ for (i = 1983; i < 2021; i++) {
   let markdownLibrary = markdownIt({
     html: true,
     breaks: true,
-    linkify: true
+    linkify: false 
   }).use(markdownItAnchor, {
-    permalink: true,
+    permalink: false,
     permalinkClass: "direct-link",
     permalinkSymbol: "#"
   });

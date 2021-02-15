@@ -1,0 +1,49 @@
+---
+layout: layouts/base.liquid
+---
+
+<div id="past">
+
+        {% assign season_counter = 0 %}
+
+	{% for season in collections.seasonsList %}
+
+          {% if season.exists %}
+                  <a href="{{season.url}}">{{ cs }}<p class="active folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ season.combo  }}<span class="synops">{{ season.title }}</span></p></a> 
+          {% else %}
+                <a href="#"><p class="folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ season.combo  }}<span class="synops"></span></p></a> 
+
+        {% endif %}
+
+        {% endfor %}
+
+  </div>
+
+
+  {{ content }}
+
+<div id="future">
+
+        {% assign next_year = 2022 %}
+        {% assign 100th_year = 2083 %}
+        {% for y in (next_year..100th_year) %}
+        {% assign  seasons_by_year = collections.all | where: "year", y %}
+
+        {% assign seasons = "Winter, Spring, Summer, Autumn" | split: ", " %}
+        {% for s in seasons %}
+          {% assign season =   seasons_by_year | where: "season", s | first %}
+        
+        {% if season %}
+        <a href="{{season.url}}"><p class="active folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{  y }}<span class="synops">{{ season.title }}</span></p></a> 
+        {% else %}
+        <a href="#"><p class="folio winter">>&nbsp;<span class="numbering"><span>#</span>{% increment season_count %}</span>  {{ s }} {{ y }}<span class="synops"></span></p></a> 
+
+        {% endif %}
+
+        {% endfor %}
+
+
+        
+        {% endfor %}
+
+  </div>
