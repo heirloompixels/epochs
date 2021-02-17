@@ -1,4 +1,11 @@
 ---
-title: Winter 2021 
-layout: layouts/landing
+layout: layouts/landing.njk
+title: Winter 2021
 ---
+
+{%- for post in collections.winter2021 -%}
+	{{ post.templateContent | safe }}
+{%- endfor -%}
+
+
+

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{ page.title }}</title>
+  <title>Mind is like a Mad Monkey >> {{ page.title }}</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -61,7 +61,10 @@ font-family:
           display: flex; 
           color: #A9A9A9;
   }
-  body{ background: white; color: #010D00;  }
+  body{ 
+	background: white; 
+	color: #010D00;  
+}
 
   a { 
           text-decoration: none; 
@@ -103,10 +106,22 @@ font-family:
 margin: 5em;
 }
 
+#content {
+	width: 60vw; 
+}
+
 #content p {
 	line-height: 1.2em; 
 	font-size: 1.3rem;
 
+}
+
+#content img {
+	width: 60vw; 
+}
+
+#current, #menu{
+	padding-top: 15vh;
 }
 
   .current { 
@@ -115,6 +130,21 @@ margin: 5em;
   .active { 
          color: black;  
   }
+  #topnav {
+	position: fixed; 
+	right: 0; 
+	left: 0; 
+	z-index: 999;
+	width: 100%;
+	background: rgba(255,255,255,.5);
+}
+#topnav a {
+	width: 100%;
+}
+
+	#topnav a:hover {
+	background: white;
+}
 
   #special {
   background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
@@ -137,6 +167,9 @@ $(document).ready(function () {
 </head>
 
 <body>
+<div id="topnav">
+	<p><a href="/#menu">+++ Full Menu</a</p>
+</div>
 
 
   {{ content }}
